@@ -16,6 +16,7 @@ import wikipedia #pip install wikipedia
 import webbrowser
 import os
 import smtplib
+import secrets
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
@@ -133,5 +134,12 @@ if __name__ == "__main__":
             except Exception as e:
                 print(e)
                 speak("Sorry Sir. I am not able to send this email")    
+                
+        elif 'toss a coin' in query:
+            coin = secrets.randbelow(1)
+            if(coin == 1):
+                speak("Heads")
+            else:
+                speak("Tails")
 
 #Created By Soumwadeep Guha.
