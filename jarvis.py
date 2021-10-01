@@ -114,16 +114,16 @@ if __name__ == "__main__":
             speak(f"Sir, the time is {strTime}")
 
         elif 'open code' in query:
-            codePath = "C:\\Users\\soumw\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
+            codePath = "code"
             os.startfile(codePath)
         elif 'open word' in query:
-            wordPath = "C:\\Program Files (x86)\\Microsoft Office\\Office12\\WINWORD.EXE"
+            wordPath = "WINWORD"
             os.startfile(wordPath)
         elif 'open excel' in query:
-            excelPath = "C:\\Program Files (x86)\\Microsoft Office\\Office12\\EXCEL.exe"
+            excelPath = "EXCEL"
             os.startfile(excelPath)
         elif 'open powerpoint' in query:
-            powerpointPath = "C:\\Program Files (x86)\\Microsoft Office\\Office12\\POWERPNT.exe"
+            powerpointPath = "POWERPNT"
             os.startfile(powerpointPath)
 
         elif 'email to sdg' in query:
