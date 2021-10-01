@@ -18,3 +18,5 @@ We Are Exited To Get New Features.
 # updates
 Add Some Exclusive Features Too Such As Short Story Teller.
 # get ready.
+# more
+get ready
