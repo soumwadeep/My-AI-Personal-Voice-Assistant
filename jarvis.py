@@ -14,10 +14,14 @@ import speech_recognition as sr  # pip install speechRecognition
 import datetime
 import wikipedia  # pip install wikipedia
 import webbrowser
+import pyjokes
 import os
 import smtplib
 import secrets
+import random
+from dotenv import load_dotenv
 
+load_dotenv()
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
 # print(voices[1].id)
@@ -68,8 +72,10 @@ def sendEmail(to, content):
     server = smtplib.SMTP('smtp.gmail.com', 587)  # smtp of your email provider
     server.ehlo()
     server.starttls()
-    server.login('youremail@emailprovider.com', 'yourpassword')
-    server.sendmail('youremail@emailprovider.com', to, content)
+    mail_address = os.getenv('MAIL_ADDRESS')
+    mail_password = os.getenv('MAIL_PASSWORD')
+    server.login(mail_address, mail_password)
+    server.sendmail(mail_address, to, content)
     server.close()
 
 
@@ -104,10 +110,22 @@ if __name__ == "__main__":
             webbrowser.open("stackoverflow.com")
 
         elif 'play music' in query:
-            music_dir = 'C:\\Users\\soumw\\Desktop\\Favourite Songs'
-            songs = os.listdir(music_dir)
-            print(songs)
-            os.startfile(os.path.join(music_dir, songs[0]))
+            music_dir = os.getenv("MUSIC_DIR")
+            print("[+] Searching:", music_dir)
+            if os.path.isdir(music_dir):
+                songs = [
+                    file
+                    for file in os.listdir(music_dir)
+                    if file.endswith(".wav") or file.endswith(".mp3")
+                ]
+                if not songs:
+                    speak("Sorry Sir, No valid songs found")
+                    continue
+                song = random.choice(songs)
+                print("[+] Playing:", song)
+                os.startfile(os.path.join(music_dir, song))
+            else:
+                speak("Sorry Sir, The Music Directory is not available")
 
         elif 'the time' in query:
             strTime = datetime.datetime.now().strftime("%H:%M:%S")
@@ -143,6 +161,18 @@ if __name__ == "__main__":
                 speak("Heads")
             else:
                 speak("Tails")
+        elif 'joke' in query:
+            joke = pyjokes.get_joke(language='en', category='neutral')
+            print(joke)
+            speak(joke)
+        elif 'restart' in query:
+            speak("Restarting System")
+            os.system('shutdown -r')
+            break
+        elif 'shutdown' in query:
+            speak("Shutting Down System")
+            os.system('shutdown -s')
+            break
         elif 'close' in query:
             speak("Thanks Sir, Have A Great Day")
             break
