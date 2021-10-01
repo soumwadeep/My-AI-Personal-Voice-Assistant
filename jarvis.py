@@ -143,5 +143,7 @@ if __name__ == "__main__":
                 speak("Heads")
             else:
                 speak("Tails")
-
+        elif 'close' in query:
+            speak("Thanks Sir, Have A Great Day")
+            break
 # Created By Soumwadeep Guha.
