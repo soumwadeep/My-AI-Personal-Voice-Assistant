@@ -13,5 +13,5 @@ If Your Code Will Help To Add More Features In This Voice Assistant Then I Will 
 
 # Thanks For Your Contribution In Advanced
 Best Of Luck!!
-# a new world of AI
-we are exited 
+# A New World Of AI
+We Are Exited To Get New Features.
