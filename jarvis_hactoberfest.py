@@ -385,7 +385,12 @@ class JarvisAssistant:
         This function will open "https://photos.google.com/" in your browser.
         :return: Bool
         """
-        return gp.google_photos()
+        try:
+            gp = webbrowser.open('https://photos.google.com/')
+            return True
+        except Exception as e:
+            print(e)
+            return False
 
     def tell_me_joke(self, language='en', category='neutral'):
         """
